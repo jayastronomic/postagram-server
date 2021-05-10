@@ -23,6 +23,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.2'
+gem 'mini_magick'
 
 
 # Use Active Storage variant

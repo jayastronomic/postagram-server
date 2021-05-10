@@ -22,7 +22,7 @@ module Api
                 user.update(user_params)
                 render json: user
             end
-
+            
             private
             
             def user_params
