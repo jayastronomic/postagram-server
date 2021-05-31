@@ -3,7 +3,7 @@ module Api
         class PostsController < ApplicationController
             def index
                 posts = Post.order('created_at DESC')
-                render json: posts
+                render json: posts, current_user_id: current_user.id
             end
 
             def create

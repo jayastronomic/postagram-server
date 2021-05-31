@@ -5,8 +5,10 @@ Rails.application.routes.draw do
        post '/login', to: 'sessions#create'
        delete '/logout', to: 'sessions#destroy'
        get '/logged_in', to: 'sessions#is_logged_in?'
-       resources :users, only: [:create, :show, :update]
-       resources :posts, only: [:index, :create, :destroy]
+       resources :users, only: [:create, :show, :update] do
+        resources :likes, only: [:index, :create, :destroy]
+       end
+       resources :posts, only: [:index, :create, :destroy] 
        end
      end
    end

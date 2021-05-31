@@ -22,6 +22,11 @@ module Api
                 user.update(user_params)
                 render json: user
             end
+
+            def favorites
+                favorites = current_user.favorites
+                render json: favorites
+            end
             
             private
             
