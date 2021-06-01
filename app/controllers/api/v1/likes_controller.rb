@@ -2,6 +2,16 @@ module Api
     module V1
         class LikesController < ApplicationController
 
+
+
+
+            def index 
+                user = current_user 
+                user_liked_posts = user.liked_posts
+                render json: user_liked_posts, current_user_id: user.id
+            end
+
+
             def create
                 if already_liked?
                     render json: {status: "ALREADY_LIKED", like_id: @like.id }
@@ -16,7 +26,7 @@ module Api
             def destroy
                 like = Like.find(params[:id])
                 like.destroy
-                render json: {status: "DELETED"}
+                render json: like
             end
 
 

@@ -2,7 +2,7 @@
 module Api 
     module V1 
      class PostSerializer < ActiveModel::Serializer
-      attributes :id, :content, :post_user, :user_id, :liked_by_current_user
+      attributes :id, :content, :post_user, :user_id, :liked_by_current_user, :post_like_id
    
       def post_user
         object.user.username
@@ -12,6 +12,13 @@ module Api
 
       def liked_by_current_user
         Like.where(post_id: object.id, user_id: @instance_options[:current_user_id]).exists?
+      end
+
+      def post_like_id
+        if liked_by_current_user
+          like = Like.find_by(post_id: object.id, user_id: @instance_options[:current_user_id])
+          like.id
+        end
       end
 
 
