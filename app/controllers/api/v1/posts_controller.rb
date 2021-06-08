@@ -19,6 +19,18 @@ module Api
                 render json: post
             end
 
+            def show
+                post = Post.find(params[:id])
+                render json: post
+            end
+
+            def user_posts
+                user = User.find(params[:user_id])
+                user_posts = user.posts
+                render json: user_posts, current_user_id: current_user.id
+            end
+
+
             private
 
             def post_params

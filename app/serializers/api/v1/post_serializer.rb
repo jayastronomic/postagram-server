@@ -2,10 +2,14 @@
 module Api 
     module V1 
      class PostSerializer < ActiveModel::Serializer
-      attributes :id, :content, :post_user, :user_id, :liked_by_current_user, :post_like_id
+      attributes :id, :content, :post_user, :user_full_name, :user_id, :liked_by_current_user, :post_like_id, :number_of_likes
    
       def post_user
         object.user.username
+      end
+
+      def user_full_name
+        object.user.full_name
       end
 
     
@@ -19,6 +23,10 @@ module Api
           like = Like.find_by(post_id: object.id, user_id: @instance_options[:current_user_id])
           like.id
         end
+      end
+
+      def number_of_likes
+        object.liked_by.length
       end
 
 
