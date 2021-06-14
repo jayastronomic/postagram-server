@@ -29,24 +29,6 @@ module Api
                 render json: like
             end
 
-
-
-
-
-
-
-            # def create 
-            #     @new_favorite_post = FavoritePost.new(favorite_params)
-            #     user_favorited_posts_ids = @new_favorite_post.user.favorites.ids
-            #     if user_favorited_posts_ids.any?(@new_favorite_post.post.id)
-            #        already_favorited
-            #     else 
-            #         @new_favorite_post.save
-            #         render json: @new_favorite_post
-            #     end
-            # end
-
-
             private 
 
             def like_params

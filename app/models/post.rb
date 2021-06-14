@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
     belongs_to :user
 
+    scope :of_followed_users, -> (following_users) { where user_id: following_users }
+
     has_many :likes, dependent: :destroy
     has_many :liked_by, through: :likes, source: :user, dependent: :destroy
 

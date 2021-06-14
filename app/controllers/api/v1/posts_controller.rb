@@ -2,7 +2,8 @@ module Api
     module V1
         class PostsController < ApplicationController
             def index
-                posts = Post.order('created_at DESC')
+                # posts = Post.order('created_at DESC')
+                posts = Post.of_followed_users(current_user.followings).order('created_at DESC')
                 render json: posts, current_user_id: current_user.id
             end
 
@@ -26,7 +27,7 @@ module Api
 
             def user_posts
                 user = User.find(params[:user_id])
-                user_posts = user.posts
+                user_posts = user.posts.order('created_at DESC') 
                 render json: user_posts, current_user_id: current_user.id
             end
 

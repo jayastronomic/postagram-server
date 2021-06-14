@@ -2,6 +2,12 @@ module Api
     module V1
         class UsersController < ApplicationController
 
+
+            def index 
+                users = User.where.not(id: current_user.id)
+                render json: users, current_user_id: current_user.id
+            end
+
             def create
                 @user = User.new(user_params)
                 if @user.save
@@ -27,6 +33,8 @@ module Api
                 favorites = current_user.favorites
                 render json: favorites
             end
+
+            
             
             private
             
